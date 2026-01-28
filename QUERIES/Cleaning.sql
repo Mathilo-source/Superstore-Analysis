@@ -80,6 +80,14 @@ WHERE rn = 1;
 SELECT * FROM orders WHERE order_date IS NULL;
 SELECT * FROM sales WHERE profit IS NULL;
 
+CREATE VIEW vw_customers_clean AS
+SELECT
+    customer_id,
+    COALESCE(customer_name, 'UNKNOWN') AS customer_name,
+    COALESCE(city, 'UNKNOWN') AS city,
+    COALESCE(segment, 'UNKNOWN') AS segment
+FROM customers;
+
 -- consistent case and getting rid of extra spaces
 SET SQL_SAFE_UPDATES = 0;
 UPDATE customers
